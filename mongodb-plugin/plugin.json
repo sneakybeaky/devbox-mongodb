@@ -1,0 +1,14 @@
+{
+    "name": "mongodb",
+    "version": "0.0.1",
+    "readme": "This plugin configures MonogoDB to use a local config file and data directory for this project, and configures a mongodb service.",
+    "env": {
+      "MONGODB_DATA": "{{.Virtenv}}/data",
+      "MONGODB_CONFIG": "{{.DevboxDir}}/mongod.conf"
+    },
+    "create_files": {
+      "{{.Virtenv}}/data": "",
+      "{{.Virtenv}}/process-compose.yaml": "config/process-compose.yaml",
+      "{{.DevboxDir}}/mongod.conf": "config/mongod.conf"
+    }
+  }

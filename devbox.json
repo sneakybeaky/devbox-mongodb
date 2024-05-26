@@ -3,6 +3,9 @@
     "packages": [
       "path:mongo-flake#mongodb"
     ],
+    "include": [
+      "path:mongodb-plugin/plugin.json"
+    ],    
     "shell": {
       "init_hook": [
         "echo 'Welcome to devbox!' > /dev/null"
