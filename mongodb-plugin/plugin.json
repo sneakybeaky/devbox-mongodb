@@ -4,11 +4,23 @@
     "readme": "This plugin configures MonogoDB to use a local config file and data directory for this project, and configures a mongodb service.",
     "env": {
       "MONGODB_DATA": "{{.Virtenv}}/data",
-      "MONGODB_CONFIG": "{{.DevboxDir}}/mongod.conf"
+      "MONGODB_CONFIG": "{{.DevboxDir}}/mongod.conf",
+      "MONGODB_USERNAME": "admin",
+      "MONGODB_PASSWORD": "password"
     },
     "create_files": {
       "{{.Virtenv}}/data": "",
       "{{.Virtenv}}/process-compose.yaml": "config/process-compose.yaml",
-      "{{.DevboxDir}}/mongod.conf": "config/mongod.conf"
+      "{{.DevboxDir}}/mongod.conf": "config/mongod.conf",
+      "{{ .Virtenv }}/setup_db.sh": "setup_db.sh",
+      "{{ .Virtenv }}/flake/flake.nix": "flake.nix"
+    },
+    "packages": [
+      "path:{{ .Virtenv }}/flake"
+    ],
+    "shell": {
+      "init_hook": [
+        "bash {{ .Virtenv }}/setup_db.sh"
+      ]
     }
-  }
+}
